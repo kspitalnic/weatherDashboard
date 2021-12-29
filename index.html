@@ -5,79 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <header>
-        <h1>Weather Dashboard</h1>
-    </header>
+
+    <header>Weather Dashboard</header>
 
     <div class="container">
         <div class="row">
-
+            <!-- Search area -->
             <div class="col-4 search">
-<!-- Search area  -->
-                <h4>Search for a City:</h4>
+                <span class="searchtitle">Search for a City:</span>
                 <input type="text" placeholder="Enter a city"></input>
                 <button type="submit">Search</button>
             </div>
-<!-- Current City weather information -->
+            <!-- Current City weather information -->
             <div class="col-8">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="cityDate">
-                            <p id="cityDate">Filler city and widget</p>
+                <section class="citycurrent">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="cityDate">
+                                <p id="cityDate">Filler city and widget</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="temp"> Temp:
-                            <p id="temp"></p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="temp"> Temp:
+                                <p id="temp"></p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="wind"> Wind:
-                            <p id="wind"></p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="wind"> Wind:
+                                <p id="wind"></p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="humidity">Humidity:
-                            <p id="humidity"></p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="uv">Humidity:
-                            <p id="uv"></p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="humidity">Humidity:
+                                <p id="humidity"></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-<!-- 5 Day Forcast Section -->
-                <div class="row">
-                    <div class="col-12">
-                        <h4>Five Day Forcast</h4>
-                        five day forcast info here
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="uv">Humidity:
+                                <p id="uv"></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <!-- 5 Day Forcast Section -->
+                <section class="forcast">
+                    <div class="row">
+                        <div class="col-12">
+                            5-Day Forcast
+                            </br>
+                            five day forcast info here
+                        </div>
+                    </div>
+                </section>
+
             </div>
-
         </div>
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="/assets/script.js"></script>
 </body>
 
 </html>

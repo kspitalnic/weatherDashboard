@@ -1,0 +1,65 @@
+body {
+    margin: 10px;
+}
+header {
+    padding: 5px;
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    color:white;
+    background-image: linear-gradient(to right, rgb(88, 169, 219), rgb(66, 3, 130)) ;
+}
+
+.container {
+    max-width: 100%;
+}
+.search {
+    padding:10px 0;
+}
+
+.searchtitle {
+    font-weight: bold;
+    align-items: center;
+    width: 100%;
+    font-size:20px;
+}
+
+input {
+    border-radius: 10px;
+    align-items: center;
+    margin:5px;
+    padding: 5px;
+    width:100%;
+    border-color: grey;
+    border-width: thin;
+}
+
+button {
+    width: 100%;
+    align-items: center;
+    background-color: rgb(88, 169, 219);
+    color: white;
+    border-radius: 5px;
+    border-color: rgb(88, 169, 219);
+    margin: 5px;
+    padding: 5px 5px 10px 5px; 
+}
+
+.citycurrent{
+    margin:20px 60px 0 0;
+    padding:10px;
+    border:1px solid black;
+    width: 100%;
+}
+
+.forcast{
+    padding:10px;
+    font-weight: bold;
+    font-size: 20px;
+    width:100%;
+}
+
+#cityDate {
+    font-size: 18px;
+    font-weight: bold;
+}
