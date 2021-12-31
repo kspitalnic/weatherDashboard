@@ -1,5 +1,15 @@
 var apiKey = "a7162fb1fd8fd98f4327ec1e312082af";
 
+var cityDate = document.getElementById("cityDate");
+var temp = document.getElementById("temp");
+var wind = document.getElementById("wind");
+var humidity = document.getElementById("humidity");
+var uv = document.getElementById("uv");
+
+
+
+
+
 $("#searchBtn").click (function getWeather() {
     var location = document.getElementById("location").value.trim(); 
     console.log(location);
@@ -9,9 +19,32 @@ $("#searchBtn").click (function getWeather() {
     fetch(oneDayUrl)
     .then(function(response){
         return response.json()
-    }) .then(function(data){
+    }) 
+    .then(function(data){
         console.log(data);
+
+        cityDate.innerHTML = data.name + " - " + moment().format("MMM Do YY");
+        var icon = response.data.weather[0].icon;
+         
+        var convertTemp=Math.round((((data.main.temp)-273.15)*1.8)+32)
+        temp.innerHTML = "Temperature: " + convertTemp + " \u00B0F";
+        wind.innerHTML = "Wind: " + data.wind.speed + " MPH";
+        humidity.innerHTML = "Humidity: " + data.main.humidity + "%";
+
+        // cityName.innerHTML = "lksjdf";
+        // console.log(cityName);
+        // var current = response.data.dt*1000;
+        // console.log(current)
+        // var day = current.getDate();
+        // var month = current.getMonth();
+        // var year = current.getFullYear();
+
+        // var date = document.getElementById("cityName");
+        // console.log(date.val);
+        //     date.innerHTML=data.name + moment().format("MMM Do YY") + data.weather.icon; 
+
         fetchWeather(data);
+
     }) .catch(function(error){
         console.log(error)
     })
@@ -51,26 +84,7 @@ function fetchWeather(data){
 
 
 
-    //attempt using geocoder 
 
-    // getCoordinates();
-    // function getCoordinates(request){
-    //     fetch("https://maps.googleapis.com/maps/api/js?key=AIzaSyBsxqmtTs7-gPZXL68yoiN01dtF9hL5vfI")
-    //     .then((result) => {
-    //         var { results } = result; 
-    //         map.setCenter(results[0].geometry.location);
-    //         marker.setPosition(results[0].geometry.location);
-    //         marker.setMap(map);
-    //         responseDiv.style.display = "block";
-    //         response.innerText = JSON.stringify(result, null, 2);
-    //         console.log(results);
-    //         return results;
-    //       })
-    //       .catch((e) => {
-    //         alert("Geocode was not successful for the following reason: " + e);
-    //       });
-    //   }
-    //     })
 
 
 
