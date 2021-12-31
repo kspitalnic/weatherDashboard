@@ -24,8 +24,8 @@ $("#searchBtn").click (function getWeather() {
         console.log(data);
 
         cityDate.innerHTML = data.name + " - " + moment().format("MMM Do YY");
-        var icon = response.data.weather[0].icon;
-         
+        // var icon = data.weather[0].icon;
+
         var convertTemp=Math.round((((data.main.temp)-273.15)*1.8)+32)
         temp.innerHTML = "Temperature: " + convertTemp + " \u00B0F";
         wind.innerHTML = "Wind: " + data.wind.speed + " MPH";
@@ -47,6 +47,7 @@ $("#searchBtn").click (function getWeather() {
 
     }) .catch(function(error){
         console.log(error)
+        window.alert('Invalid city input. Please try again');
     })
 }) 
 
