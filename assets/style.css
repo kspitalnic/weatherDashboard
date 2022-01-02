@@ -50,7 +50,7 @@ button {
 }
 
 #cityDate {
-    padding: 10px 0 0 0;
+    padding: 12px 0 0 0;
 }
 
 .citycurrent{
@@ -70,4 +70,13 @@ button {
 #cityDate {
     font-size: 18px;
     font-weight: bold;
+}
+
+#uv {
+    display:inline-flex;
+    padding: 1px; 
+}
+
+#uvindex {
+    color:white;
 }

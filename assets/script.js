@@ -50,8 +50,33 @@ function fetchWeather(data){
         })
         .then(function(data){
             console.log(data);
-            uv.innerHTML = "UV Index: " + data.current.uvi + "%";
+            uvi = (data.current.uvi);
+            console.log(uvi);
+            uv.innerHTML = "UV Index: <span id='uvindex'> </span ";
+            uvindex.innerHTML = uvi;
+            if (uvi>=0 && uvi<3){
+                uvindex.setAttribute("style", "background-color: green;")
+            }
+            else if (uvi>=3 && uvi<6){
+                uvindex.setAttribute("style", "background-color: yellow;")
+            }
+            else if (uvi>=6 && uvi<8){
+                uvindex.setAttribute("style", "background-color: orange;")
+            }
+            else {
+                uvindex.setAttribute("style", "background-color: red;")
+            };
+            console.log(uvi)
+
+
             //function rendermyCard(){};
+            // function rendermyCard(){
+            //     var forecast = document.querySelector(".forecasts");
+            //     for (i=0; i< 5; i++) {
+            //         forecasts.innerHTML = "";
+
+            //     }
+            // }
         })
         .catch(function(error){
             console.log(error);
