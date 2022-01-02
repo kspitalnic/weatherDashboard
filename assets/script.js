@@ -7,9 +7,6 @@ var humidity = document.getElementById("humidity");
 var uv = document.getElementById("uv");
 
 
-
-
-
 $("#searchBtn").click (function getWeather() {
     var location = document.getElementById("location").value.trim(); 
     console.log(location);
@@ -23,25 +20,16 @@ $("#searchBtn").click (function getWeather() {
     .then(function(data){
         console.log(data);
 
-        cityDate.innerHTML = data.name + " - " + moment().format("MMM Do YY");
-        // var icon = data.weather[0].icon;
+        var icon = data.weather[0].icon
+        var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        cityDate.innerHTML = data.name + "  " + moment().format("MMM DD, YYYY") + " "; 
+        {$("#icon").attr("src",iconurl)}
 
         var convertTemp=Math.round((((data.main.temp)-273.15)*1.8)+32)
         temp.innerHTML = "Temperature: " + convertTemp + " \u00B0F";
         wind.innerHTML = "Wind: " + data.wind.speed + " MPH";
         humidity.innerHTML = "Humidity: " + data.main.humidity + "%";
 
-        // cityName.innerHTML = "lksjdf";
-        // console.log(cityName);
-        // var current = response.data.dt*1000;
-        // console.log(current)
-        // var day = current.getDate();
-        // var month = current.getMonth();
-        // var year = current.getFullYear();
-
-        // var date = document.getElementById("cityName");
-        // console.log(date.val);
-        //     date.innerHTML=data.name + moment().format("MMM Do YY") + data.weather.icon; 
 
         fetchWeather(data);
 
@@ -62,6 +50,7 @@ function fetchWeather(data){
         })
         .then(function(data){
             console.log(data);
+            uv.innerHTML = "UV Index: " + data.current.uvi + "%";
             //function rendermyCard(){};
         })
         .catch(function(error){
@@ -72,7 +61,14 @@ function fetchWeather(data){
 
 
 
-// current search display current day details
+/* To do: 
+- add weather image icon 
+- add uv index (taken from second api)
+- add class to uv index (color bar depending on level)
+- create forecast cards (get data, add information visually, add/convert date and image)
+- save local storage. show local storage history
+*/ 
+
 // current search display 5 day forecast 
 
 
