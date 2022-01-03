@@ -84,3 +84,8 @@ button {
 .card {
     display: inline-block;
 }
+
+.historyButton {
+    color: white;
+    background-color: rgb(88, 169, 219);
+}

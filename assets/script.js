@@ -6,10 +6,19 @@ var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
 var uv = document.getElementById("uv");
 
+var historyID = document.getElementById("history");
+
 
 $("#searchBtn").click (function getWeather() {
     var location = document.getElementById("location").value.trim(); 
     console.log(location);
+
+    var history = JSON.parse(localStorage.getItem("location")) || [];
+    history.push(location);
+    history = JSON.stringify(location);
+    localStorage.setItem("history", history);
+    renderSearchHistory();
+
 
     var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
     console.log(oneDayUrl)
@@ -19,6 +28,8 @@ $("#searchBtn").click (function getWeather() {
     }) 
     .then(function(data){
         console.log(data);
+
+        
 
         var icon = data.weather[0].icon
         var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
@@ -32,12 +43,14 @@ $("#searchBtn").click (function getWeather() {
 
 
         fetchWeather(data);
-
+        return location; 
     }) .catch(function(error){
         console.log(error)
         window.alert('Invalid city input. Please try again');
     })
-}) 
+
+
+})
 
 function fetchWeather(data){
     var lat = data.coord.lat; 
@@ -66,13 +79,15 @@ function fetchWeather(data){
                 uvindex.setAttribute("style", "background-color: red;");
             };
 
+            rendermyCard();
+
+
 
             var day = moment().format("MMM DD, YYYY")
             function rendermyCard(){
                 var forecasts = document.querySelector(".forecasts");
-                for (i=0; i< 5; i++) {
+                for (i=0; i<5; i++) {
                     day = moment().add(i,'days').format("MMM DD, YYYY");
-                    console.log(day);
                     forecast = document.createElement("span");
                     forecast.className="card"
                     var dayName = document.querySelector(".forecasts");
@@ -84,7 +99,6 @@ function fetchWeather(data){
                     dayIcon = document.createElement("span")
 
                     var icons = data.daily[i].weather[0].icon;
-                    console.log(icons);
                     var iconurls = "http://openweathermap.org/img/w/" + icons + ".png";
                     var img = document.createElement("img");
                     img.src = iconurls;
@@ -106,14 +120,8 @@ function fetchWeather(data){
                         dayHumidity = document.createElement("ul");
                         dayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + "%";
                         forecasts.appendChild(dayHumidity);
-
-
-
-
-                    console.log(forecasts);
                 }
             }
-            rendermyCard();
         })
         .catch(function(error){
             console.log(error);
@@ -121,20 +129,37 @@ function fetchWeather(data){
 }
 
 
+function renderSearchHistory(){
+    var searched = document.createElement("button"); 
+    for (var i = 0; i < history.length; i++) {
+        searched.setAttribute("type", "text");
+        searched.setAttribute("value",searched[i]);
+        searched.addEventListener("click", function(){
+            getWeather(searched.value)
+        })
+    }
+    historyID.append(searched);
+}
+renderSearchHistory();
+
+
+
+
+
+
+
 
 
 /* To do: 
-- add weather image icon 
-- add uv index (taken from second api)
-- add class to uv index (color bar depending on level)
 - create forecast cards (get data, add information visually, add/convert date and image)
+- clear forecast cards after new search
 - save local storage. show local storage history
+- css local storage 
+- show local storage
 */ 
 
-// current search display 5 day forecast 
 
 
-// add city to local storage and show 
 
 
 
