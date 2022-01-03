@@ -75,12 +75,13 @@ function fetchWeather(data){
                     console.log(day);
                     forecast = document.createElement("span");
                     forecast.className="card"
-                    forecast.innerHTML = day;
-                    forecasts.appendChild(forecast);
+                    var dayName = document.querySelector(".forecasts");
+                    dayName = document.createElement("h4");
+                    dayName.innerHTML = day;
+                    forecasts.appendChild(dayName);
 
-                    var convertTemp=Math.round((((data.daily[i].temp.day)-273.15)*1.8)+32)
-
-                    humidity.innerHTML = "Humidity: " + + "%";
+                    var dayIcon = document.querySelector(".forecasts");
+                    dayIcon = document.createElement("span")
 
                     var icons = data.daily[i].weather[0].icon;
                     console.log(icons);
@@ -89,8 +90,27 @@ function fetchWeather(data){
                     img.src = iconurls;
 
                     forecasts.appendChild(img);
+
+                    var convertTemp=Math.round((((data.daily[i].temp.day)-273.15)*1.8)+32)
+
+                    document.createElement("li");
+                    var dayTemp = document.querySelector(".forecasts");
+                        dayTemp = document.createElement("ul");
+                        dayTemp.innerHTML = "Temp: " + convertTemp + " \u00B0F";
+                        forecasts.appendChild(dayTemp);
+                    var dayWind = document.querySelector(".forecasts");
+                        dayWind = document.createElement("ul");
+                        dayWind.innerHTML = "Wind: " + data.daily[i].wind_speed + "MPH";
+                        forecasts.appendChild(dayWind);
+                    var dayHumidity = document.querySelector(".forecasts");
+                        dayHumidity = document.createElement("ul");
+                        dayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + "%";
+                        forecasts.appendChild(dayHumidity);
+
+
+
+
                     console.log(forecasts);
-                    forecast.innerHTML = day  + "Temp: " + convertTemp + " \u00B0F" + "Wind: " + data.daily[i].wind_speed + "MPH" + "Humidity: " + data.daily[i].humidity + "%";
                 }
             }
             rendermyCard();
