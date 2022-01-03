@@ -51,32 +51,36 @@ function fetchWeather(data){
         .then(function(data){
             console.log(data);
             uvi = (data.current.uvi);
-            console.log(uvi);
             uv.innerHTML = "UV Index: <span id='uvindex'> </span ";
             uvindex.innerHTML = uvi;
             if (uvi>=0 && uvi<3){
                 uvindex.setAttribute("style", "background-color: green;")
             }
             else if (uvi>=3 && uvi<6){
-                uvindex.setAttribute("style", "background-color: yellow;")
+                uvindex.setAttribute("style", "background-color: yellow; color:black");
             }
             else if (uvi>=6 && uvi<8){
-                uvindex.setAttribute("style", "background-color: orange;")
+                uvindex.setAttribute("style", "background-color: orange; color:black");
             }
             else {
-                uvindex.setAttribute("style", "background-color: red;")
+                uvindex.setAttribute("style", "background-color: red;");
             };
-            console.log(uvi)
 
 
             //function rendermyCard(){};
-            // function rendermyCard(){
-            //     var forecast = document.querySelector(".forecasts");
-            //     for (i=0; i< 5; i++) {
-            //         forecasts.innerHTML = "";
-
-            //     }
-            // }
+            var day = moment().format("MMM DD, YYYY")
+            function rendermyCard(){
+                var forecasts = document.querySelector(".forecasts");
+                for (i=0; i< 5; i++) {
+                    day = moment().add(i,'days').format("MMM DD, YYYY");
+                    console.log(day);
+                    forecast = document.createElement("span");
+                    forecast.innerHTML = day;
+                    forecasts.appendChild(forecast);
+                    console.log(forecasts);
+                }
+            }
+            rendermyCard();
         })
         .catch(function(error){
             console.log(error);
