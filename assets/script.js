@@ -67,7 +67,6 @@ function fetchWeather(data){
             };
 
 
-            //function rendermyCard(){};
             var day = moment().format("MMM DD, YYYY")
             function rendermyCard(){
                 var forecasts = document.querySelector(".forecasts");
@@ -83,9 +82,15 @@ function fetchWeather(data){
 
                     humidity.innerHTML = "Humidity: " + + "%";
 
-                    
+                    var icons = data.daily[i].weather[0].icon;
+                    console.log(icons);
+                    var iconurls = "http://openweathermap.org/img/w/" + icons + ".png";
+                    var img = document.createElement("img");
+                    img.src = iconurls;
+
+                    forecasts.appendChild(img);
                     console.log(forecasts);
-                    forecast.innerHTML = day + "Temp: " + convertTemp + " \u00B0F" + "Wind: " + data.daily[i].wind_speed + "MPH" + "Humidity: " + data.daily[i].humidity + "%";
+                    forecast.innerHTML = day  + "Temp: " + convertTemp + " \u00B0F" + "Wind: " + data.daily[i].wind_speed + "MPH" + "Humidity: " + data.daily[i].humidity + "%";
                 }
             }
             rendermyCard();
