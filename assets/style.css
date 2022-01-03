@@ -80,3 +80,7 @@ button {
 #uvindex {
     color:white;
 }
+
+.card {
+    display: inline-block;
+}

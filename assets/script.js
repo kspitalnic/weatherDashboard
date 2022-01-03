@@ -75,9 +75,17 @@ function fetchWeather(data){
                     day = moment().add(i,'days').format("MMM DD, YYYY");
                     console.log(day);
                     forecast = document.createElement("span");
+                    forecast.className="card"
                     forecast.innerHTML = day;
                     forecasts.appendChild(forecast);
+
+                    var convertTemp=Math.round((((data.daily[i].temp.day)-273.15)*1.8)+32)
+
+                    humidity.innerHTML = "Humidity: " + + "%";
+
+                    
                     console.log(forecasts);
+                    forecast.innerHTML = day + "Temp: " + convertTemp + " \u00B0F" + "Wind: " + data.daily[i].wind_speed + "MPH" + "Humidity: " + data.daily[i].humidity + "%";
                 }
             }
             rendermyCard();
