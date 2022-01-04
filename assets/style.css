@@ -89,3 +89,15 @@ button {
     color: white;
     background-color: rgb(88, 169, 219);
 }
+
+.cards{
+    display:inline-block;
+    margin: 5px;
+    background-color:rgb(88, 169, 219);
+    text-align: center;
+    width:18%;
+}
+
+ul {
+    padding:0;
+}

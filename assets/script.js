@@ -89,13 +89,15 @@ function fetchWeather(data) {
                 var forecasts = document.querySelector(".forecasts");
                 forecasts.innerHTML = "";
                 for (i = 0; i < 5; i++) {
+                    var cards = document.createElement("span");
+                    cards.className = "cards";
                     day = moment().add(i, 'days').format("MMM DD, YYYY");
                     forecast = document.createElement("span");
-                    forecast.className = "card"
+                    forecast.className = "cards"
                     var dayName = document.querySelector(".forecasts");
                     dayName = document.createElement("h4");
                     dayName.innerHTML = day;
-                    forecasts.appendChild(dayName);
+                    cards.appendChild(dayName);
 
                     var dayIcon = document.querySelector(".forecasts");
                     dayIcon = document.createElement("span")
@@ -105,7 +107,7 @@ function fetchWeather(data) {
                     var img = document.createElement("img");
                     img.src = iconurls;
 
-                    forecasts.appendChild(img);
+                    cards.appendChild(img);
 
                     var convertTemp = Math.round((((data.daily[i].temp.day) - 273.15) * 1.8) + 32)
 
@@ -113,15 +115,17 @@ function fetchWeather(data) {
                     var dayTemp = document.querySelector(".forecasts");
                     dayTemp = document.createElement("ul");
                     dayTemp.innerHTML = "Temp: " + convertTemp + " \u00B0F";
-                    forecasts.appendChild(dayTemp);
+                    cards.appendChild(dayTemp);
                     var dayWind = document.querySelector(".forecasts");
                     dayWind = document.createElement("ul");
                     dayWind.innerHTML = "Wind: " + data.daily[i].wind_speed + "MPH";
-                    forecasts.appendChild(dayWind);
+                    cards.appendChild(dayWind);
                     var dayHumidity = document.querySelector(".forecasts");
                     dayHumidity = document.createElement("ul");
                     dayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + "%";
-                    forecasts.appendChild(dayHumidity);
+                    cards.appendChild(dayHumidity);
+
+                    forecasts.appendChild(cards);
                 }
             }
         })
@@ -214,46 +218,49 @@ function renderSearchHistory() {
                         var forecasts = document.querySelector(".forecasts");
                         forecasts.innerHTML = "";
                         for (i = 0; i < 5; i++) {
+                            var cards = document.createElement("span");
+                            cards.className = "cards";
                             day = moment().add(i, 'days').format("MMM DD, YYYY");
                             forecast = document.createElement("span");
-                            forecast.className = "card"
+                            forecast.className = "cards"
                             var dayName = document.querySelector(".forecasts");
                             dayName = document.createElement("h4");
                             dayName.innerHTML = day;
-                            forecasts.appendChild(dayName);
-
+                            cards.appendChild(dayName);
+        
                             var dayIcon = document.querySelector(".forecasts");
                             dayIcon = document.createElement("span")
-
+        
                             var icons = data.daily[i].weather[0].icon;
                             var iconurls = "http://openweathermap.org/img/w/" + icons + ".png";
                             var img = document.createElement("img");
                             img.src = iconurls;
-
-                            forecasts.appendChild(img);
-
+        
+                            cards.appendChild(img);
+        
                             var convertTemp = Math.round((((data.daily[i].temp.day) - 273.15) * 1.8) + 32)
-
+        
                             document.createElement("li");
                             var dayTemp = document.querySelector(".forecasts");
                             dayTemp = document.createElement("ul");
                             dayTemp.innerHTML = "Temp: " + convertTemp + " \u00B0F";
-                            forecasts.appendChild(dayTemp);
+                            cards.appendChild(dayTemp);
                             var dayWind = document.querySelector(".forecasts");
                             dayWind = document.createElement("ul");
                             dayWind.innerHTML = "Wind: " + data.daily[i].wind_speed + "MPH";
-                            forecasts.appendChild(dayWind);
+                            cards.appendChild(dayWind);
                             var dayHumidity = document.querySelector(".forecasts");
                             dayHumidity = document.createElement("ul");
                             dayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + "%";
-                            forecasts.appendChild(dayHumidity);
+                            cards.appendChild(dayHumidity);
+        
+                            forecasts.appendChild(cards);
                         }
                     }
                 })
         }
     }
 }
-
 
 renderSearchHistory();
 
@@ -266,9 +273,6 @@ renderSearchHistory();
 
 
 /* To do: 
-- create forecast cards (get data, add information visually, add/convert date and image)
-- clear forecast cards after new search
-- save local storage. show local storage history
 - css local storage 
 - show local storage
 */
