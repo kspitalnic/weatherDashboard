@@ -10,9 +10,16 @@ var historyID = document.getElementById("history");
 
 var searchHistory = [];
 
-// var historyy = localStorage.getItem("historyy");
-//if there is searchHistory in localstorage, that will be the variable . otherwise it will be an EMPTY ARRAY 
+renderSearchHistory;
 
+//if there is searchHistory in localstorage, that will be the variable . otherwise it will be an EMPTY ARRAY 
+if (localStorage.getItem("history") === null) {
+    var searchHistory=[]
+    }
+else{
+    var searchHistory=localStorage.getItem("history");
+    }
+console.log(searchHistory)
 
 //Search city and display temp/wind/humidity data for current city
 $("#searchBtn").click(function getWeather() {
@@ -155,7 +162,7 @@ function renderSearchHistory() {
         var searched = document.createElement("button");
         // searched.setAttribute("value", searchHistory[i]);
         console.log(searchHistory);
-        searched.textContent = searchHistory;
+        searched.textContent = searchHistory[i];
         // JSON.stringify(searchHistory[i]);
 
         historyID.append(searched);
@@ -163,8 +170,8 @@ function renderSearchHistory() {
         console.log(searchHistory);
 
         searched.addEventListener("click", function getWeather() {
-            console.log(this.value)
-            var current = this.value
+            console.log(this.innerHTML)
+            var current = this.innerHTML
             var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + current + "&appid=" + apiKey;
             console.log(oneDayUrl)
             fetch(oneDayUrl)
@@ -269,7 +276,6 @@ function renderSearchHistory() {
     }
 }
 
-// renderSearchHistory();
 
 
 
