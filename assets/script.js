@@ -25,6 +25,7 @@ console.log(searchHistory)
 $("#searchBtn").click(function getWeather() {
     var location = document.getElementById("location").value.trim();
     console.log(location);
+    document.getElementById("location").value="";
 
 
     var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
