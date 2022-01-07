@@ -26,12 +26,6 @@ $("#searchBtn").click(function getWeather() {
     var location = document.getElementById("location").value.trim();
     console.log(location);
 
-    searchHistory.push(location);
-    searchHistory = JSON.stringify(searchHistory);
-    //STRingify search history 
-    localStorage.setItem("history", searchHistory);
-    renderSearchHistory();
-
 
     var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
     console.log(oneDayUrl)
@@ -41,7 +35,6 @@ $("#searchBtn").click(function getWeather() {
         })
         .then(function (data) {
             console.log(data);
-
 
 
             var icon = data.weather[0].icon
@@ -56,10 +49,17 @@ $("#searchBtn").click(function getWeather() {
 
 
             fetchWeather(data);
+
+            searchHistory.push(location);
+            searchHistory = JSON.stringify(searchHistory);
+            localStorage.setItem("history", searchHistory);
+            renderSearchHistory();
+
             return location;
         }).catch(function (error) {
             console.log(error)
             window.alert('Invalid city input. Please try again');
+            return;
         })
 
 })
@@ -152,7 +152,6 @@ function renderSearchHistory() {
         return
     }
     historyID.innerHTML = "";
-
 
     for (var i = 0; i < searchHistory.length; i++) {
 
