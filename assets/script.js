@@ -8,18 +8,15 @@ var uv = document.getElementById("uv");
 
 var historyID = document.getElementById("history");
 
-var searchHistory = [];
 
-renderSearchHistory;
-
-//if there is searchHistory in localstorage, that will be the variable . otherwise it will be an EMPTY ARRAY 
 if (localStorage.getItem("history") === null) {
     var searchHistory=[]
     }
 else{
     var searchHistory=localStorage.getItem("history");
     }
-console.log(searchHistory)
+
+renderSearchHistory;
 
 //Search city and display temp/wind/humidity data for current city
 $("#searchBtn").click(function getWeather() {
@@ -29,7 +26,6 @@ $("#searchBtn").click(function getWeather() {
 
 
     var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
-    console.log(oneDayUrl)
     fetch(oneDayUrl)
         .then(function (response) {
             return response.json()
@@ -157,23 +153,16 @@ function renderSearchHistory() {
     for (var i = 0; i < searchHistory.length; i++) {
 
         searchHistory = JSON.parse(localStorage.getItem("history"));
-        console.log(searchHistory);
 
         var searched = document.createElement("button");
-        // searched.setAttribute("value", searchHistory[i]);
-        console.log(searchHistory);
         searched.textContent = searchHistory[i];
-        // JSON.stringify(searchHistory[i]);
 
         historyID.append(searched);
 
-        console.log(searchHistory);
 
         searched.addEventListener("click", function getWeather() {
-            console.log(this.innerHTML)
             var current = this.innerHTML
             var oneDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + current + "&appid=" + apiKey;
-            console.log(oneDayUrl)
             fetch(oneDayUrl)
                 .then(function (response) {
                     return response.json()
@@ -275,32 +264,4 @@ function renderSearchHistory() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-/* To do: 
-- css local storage 
-- show local storage
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
