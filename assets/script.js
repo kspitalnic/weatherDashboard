@@ -10,6 +10,9 @@ var historyID = document.getElementById("history");
 
 var searchHistory = [];
 
+// var historyy = localStorage.getItem("historyy");
+//if there is searchHistory in localstorage, that will be the variable . otherwise it will be an EMPTY ARRAY 
+
 
 //Search city and display temp/wind/humidity data for current city
 $("#searchBtn").click(function getWeather() {
@@ -17,7 +20,8 @@ $("#searchBtn").click(function getWeather() {
     console.log(location);
 
     searchHistory.push(location);
-    // searchHistory = JSON.stringify(searchHistory);
+    searchHistory = JSON.stringify(searchHistory);
+    //STRingify search history 
     localStorage.setItem("history", searchHistory);
     renderSearchHistory();
 
@@ -134,25 +138,28 @@ function fetchWeather(data) {
         })
 }
 
+renderSearchHistory(); 
 //save search history and allow button click to view city location again
 function renderSearchHistory() {
     if (searchHistory.length < 1) {
         return
     }
     historyID.innerHTML = "";
-    localStorage.getItem(history.value);
-    
+
 
     for (var i = 0; i < searchHistory.length; i++) {
 
+        searchHistory = JSON.parse(localStorage.getItem("history"));
+        console.log(searchHistory);
+
         var searched = document.createElement("button");
-        searched.setAttribute("value", searchHistory[i]);
-        searched.textContent = searchHistory[i];
-        JSON.stringify(searchHistory[i]);
+        // searched.setAttribute("value", searchHistory[i]);
+        console.log(searchHistory);
+        searched.textContent = searchHistory;
+        // JSON.stringify(searchHistory[i]);
 
         historyID.append(searched);
 
-        console.log(searchHistory[i]);
         console.log(searchHistory);
 
         searched.addEventListener("click", function getWeather() {
@@ -262,7 +269,7 @@ function renderSearchHistory() {
     }
 }
 
-renderSearchHistory();
+// renderSearchHistory();
 
 
 
