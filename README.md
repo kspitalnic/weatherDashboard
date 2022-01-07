@@ -15,10 +15,10 @@ SO THAT I can plan a trip accordingly
 * HTML, CSS, JavaScript
 * Local storage, third-party APIs, bootstrap
 
-<a href="">Link to Website </a>
+<a href="https://kspitalnic.github.io/weatherDashboard/">Link to Website </a>
 <br/>
-<a href="">Link to Repository </a>
+<a href="https://github.com/kspitalnic/weatherDashboard">Link to Repository </a>
 <br/>
 
 
-Screenshot: <img src=""> 
+Screenshot: <img src="assets/ss.png"> 
